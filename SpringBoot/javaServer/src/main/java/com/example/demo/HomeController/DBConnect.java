@@ -23,7 +23,7 @@ public class DBConnect {
 			try {
 				System.out.println("getConnection method has been called.");
 				Class.forName("org.sqlite.JDBC");
-				conn = DriverManager.getConnection("jdbc::sqlite" + "sample.db");
+				conn = DriverManager.getConnection("jdbc:sqlite:" + "sample.db");
 			} catch(SQLException e) {
 				e.printStackTrace();
 			}	
