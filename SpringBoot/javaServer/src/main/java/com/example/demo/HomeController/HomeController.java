@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.sql.*;
 
 
@@ -33,6 +34,9 @@ public class HomeController {
 	public String keystroke(Model model) {
 		return "keystroke";
 	}
+	
+
+	
 //	@ResponseBody
 	@RequestMapping(value = "/keystroke/:country",method = RequestMethod.GET)
     public String keystrokeSend(Model model, HttpServletRequest req) throws IOException{
@@ -58,26 +62,32 @@ public class HomeController {
 //		}
 		
 		
+//		Connection conn = null;
+//        try {
+//            // db parameters
+//            String url = "jdbc:sqlite:/database.db";
+//            // create a connection to the database
+//            conn = DriverManager.getConnection(url);
+//            System.out.println("Connection to SQLite has been established.");
+//        } catch (SQLException e) {
+//            System.out.println("error: " + e.getMessage());
+//        } finally {
+//            try {
+//                if (conn != null) {
+//                    conn.close();
+//                }
+//            } catch (SQLException ex) {
+//                System.out.println(ex.getMessage());
+//            }
+//        }
+		
+		try {
+			DBConnect.getConnection();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		
-		Connection conn = null;
-        try {
-            // db parameters
-            String url = "jdbc:sqlite:/database.db";
-            // create a connection to the database
-            conn = DriverManager.getConnection(url);
-            System.out.println("Connection to SQLite has been established.");
-        } catch (SQLException e) {
-            System.out.println("error: " + e.getMessage());
-        } finally {
-            try {
-                if (conn != null) {
-                    conn.close();
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
 		
 		//this is real.
 		
