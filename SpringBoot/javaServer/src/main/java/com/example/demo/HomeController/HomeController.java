@@ -44,9 +44,6 @@ public class HomeController {
 		
 //		database.db
 		
-//		Connection con = null;
-//		Statement stmt = null;
-//		ResultSet rs = null;
 		
 		String dbFileUrl = "jdbc:sqlite:/database.db";
 //		try {
@@ -61,31 +58,14 @@ public class HomeController {
 //			System.out.println("exception: " + e);
 //		}
 		
+		SQLiteJDBC.main(null);
 		
-//		Connection conn = null;
-//        try {
-//            // db parameters
-//            String url = "jdbc:sqlite:/database.db";
-//            // create a connection to the database
-//            conn = DriverManager.getConnection(url);
-//            System.out.println("Connection to SQLite has been established.");
-//        } catch (SQLException e) {
-//            System.out.println("error: " + e.getMessage());
-//        } finally {
-//            try {
-//                if (conn != null) {
-//                    conn.close();
-//                }
-//            } catch (SQLException ex) {
-//                System.out.println(ex.getMessage());
-//            }
-//        }
 		
-		try {
-			DBConnect.getConnection();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			DBConnect.getConnection();
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		}
 		
 		
 		
