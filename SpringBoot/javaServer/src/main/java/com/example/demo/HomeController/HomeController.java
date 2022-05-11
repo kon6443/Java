@@ -39,17 +39,13 @@ public class HomeController {
 	@RequestMapping(value = "/keystroke/:country",method = RequestMethod.GET)
     public String keystrokeSend(Model model, HttpServletRequest req) throws IOException{
 		System.out.println(req.getParameter("country"));
-		List<String> l = SQLiteJDBC.select();
-		System.out.println(l);
-		
+		List<String> countries = SQLiteJDBC.select();
 		String cursor = req.getParameter("country");
-//        for(int i=0;i<countries.length;i++) {
-//            if(countries[i].substring(0,cursor.length()).toLowerCase().contains(cursor.toLowerCase())) {
-//                System.out.println(countries[i]);
-//            }
-//        }
-		
-		
+        for(int i=0;i<countries.size();i++) {
+            if(countries.get(i).substring(0,cursor.length()).toLowerCase().contains(cursor.toLowerCase())) {
+                System.out.println(countries.get(i));
+            }
+        }
         return "keystroke";
     }
 
