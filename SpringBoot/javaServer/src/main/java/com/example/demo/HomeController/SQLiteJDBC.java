@@ -1,5 +1,7 @@
 package com.example.demo.HomeController;
+
 import java.sql.*;
+import java.util.*;
 
 public class SQLiteJDBC {
 
@@ -27,30 +29,60 @@ public class SQLiteJDBC {
 //         System.exit(0);
 //      }
 //      System.out.println("Table created successfully");
-      
-      Connection c = null;
-      Statement stmt = null;
-      try {
-    	  Class.forName("org.sqlite.JDBC");
-    	  c = DriverManager.getConnection("jdbc:sqlite:database.db");
-    	  c.setAutoCommit(false);
-    	  stmt = c.createStatement();
-    	  ResultSet rs = stmt.executeQuery( "SELECT * FROM COUNTRY;" );
-		      
-    	  while ( rs.next() ) {
-    		  int id = rs.getInt("id");
-    		  String  name = rs.getString("name");
-    		  System.out.println( "ID = " + id );
-    		  System.out.println( "NAME = " + name );
-    		  System.out.println();
-    	  }
-    	  rs.close();
-    	  stmt.close();
-    	  c.close();
-      } catch ( Exception e ) {
-    	  System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-    	  System.exit(0);
-      }
-      System.out.println("Operation done successfully");
+
+	   
+	   
+	   select();
+	   	
+//      Connection c = null;
+//      Statement stmt = null;
+//      try {
+//    	  Class.forName("org.sqlite.JDBC");
+//    	  c = DriverManager.getConnection("jdbc:sqlite:database.db");
+//    	  c.setAutoCommit(false);
+//    	  stmt = c.createStatement();
+//    	  ResultSet rs = stmt.executeQuery( "SELECT * FROM COUNTRY;" );
+//		      
+//    	  while ( rs.next() ) {
+//    		  int id = rs.getInt("id");
+//    		  String  name = rs.getString("name");
+//    		  System.out.println( "ID = " + id );
+//    		  System.out.println( "NAME = " + name );
+//    		  System.out.println();
+//    	  }
+//    	  rs.close();
+//    	  stmt.close();
+//    	  c.close();
+//      } catch ( Exception e ) {
+//    	  System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+//    	  System.exit(0);
+//      }
+   }
+   public static List<String> select() {
+	   Connection c = null;
+	   Statement stmt = null;
+	   List<String> returnVal = new ArrayList<String>();
+	   try {
+		   Class.forName("org.sqlite.JDBC");
+		   c = DriverManager.getConnection("jdbc:sqlite:database.db");
+		   c.setAutoCommit(false);
+		   stmt = c.createStatement();
+		   ResultSet rs = stmt.executeQuery( "SELECT * FROM COUNTRY;" );      
+		   while ( rs.next() ) {
+			   int id = rs.getInt("id");
+			   String  name = rs.getString("name");
+			   returnVal.add(name);
+//			   System.out.println(name + "added.");
+//			   System.out.println( "ID = " + id );
+//			   System.out.println( "NAME = " + name );
+		   }
+		   rs.close();
+		   stmt.close();
+		   c.close();
+	   } catch ( Exception e ) {
+		   System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		   System.exit(0);
+	   }
+	   return returnVal;
    }
 }

@@ -35,41 +35,12 @@ public class HomeController {
 		return "keystroke";
 	}
 	
-
-	
 //	@ResponseBody
 	@RequestMapping(value = "/keystroke/:country",method = RequestMethod.GET)
     public String keystrokeSend(Model model, HttpServletRequest req) throws IOException{
 		System.out.println(req.getParameter("country"));
-		
-//		database.db
-		
-		
-		String dbFileUrl = "jdbc:sqlite:/database.db";
-//		try {
-//			Class.forName("org.sqlite.JDBC");
-//			con = DriverManager.getConnection(dbFileUrl);
-//			System.out.println("sqlite db connected...");
-//			
-//			stmt = con.createStatement();
-//			rs = stmt.executeQuery("SELECT * FROM COUNTRY");
-//			
-//		} catch(Exception e) {
-//			System.out.println("exception: " + e);
-//		}
-		
-		SQLiteJDBC.main(null);
-		
-		
-//		try {
-//			DBConnect.getConnection();
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//		}
-		
-		
-		
-		//this is real.
+		List<String> l = SQLiteJDBC.select();
+		System.out.println(l);
 		
 		String cursor = req.getParameter("country");
 //        for(int i=0;i<countries.length;i++) {
