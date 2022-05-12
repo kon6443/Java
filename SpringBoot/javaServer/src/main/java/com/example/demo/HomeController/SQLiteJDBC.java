@@ -30,7 +30,7 @@ public class SQLiteJDBC {
 //      }
 //      System.out.println("Table created successfully");
    }
-   public static List<String> select() {
+   public static List<String> keystrokeShow() {
 	   Connection c = null;
 	   Statement stmt = null;
 	   List<String> returnVal = new ArrayList<String>();
@@ -53,5 +53,54 @@ public class SQLiteJDBC {
 		   System.exit(0);
 	   }
 	   return returnVal;
+   }
+   public static void dataShow() {
+	   Connection c = null;
+	   Statement stmt = null;
+//	   List<Person> returnVal = new ArrayList<Person>();
+	   try {
+		   Class.forName("org.sqlite.JDBC");
+		   c = DriverManager.getConnection("jdbc:sqlite:data.db");
+		   c.setAutoCommit(false);
+		   stmt = c.createStatement();
+		   ResultSet rs = stmt.executeQuery( "SELECT * FROM PEOPLE;" );      
+		   while ( rs.next() ) {
+			   int id = rs.getInt("id");
+			   String name = rs.getString("name");
+			   int ssn = rs.getInt("ssn");
+			   String state = rs.getString("state");
+			   Person person = new Person(id, name, ssn, state);
+			   System.out.println("p: " + person);
+//			   returnVal.add(person);
+		   }
+		   rs.close();
+		   stmt.close();
+		   c.close();
+	   } catch ( Exception e ) {
+		   System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+		   System.exit(0);
+	   }
+//	   return returnVal;
+   }
+   public static void dataPost(String name, int SSN, String state) {
+	   Connection c = null;
+	   Statement stmt = null;
+	   try {
+		   Class.forName("org.sqlite.JDBC");
+		   c = DriverManager.getConnection("jdbc:sqlite:data.db");
+		   c.setAutoCommit(false);
+		   System.out.println("Opened database successfully");
+		   stmt = c.createStatement();
+		   String sql = "INSERT INTO PEOPLE (NAME,SSN,STATE) "+
+	                        "VALUES ("+name+","+SSN+","+state+");"; 
+		   stmt.executeUpdate(sql);
+		   stmt.close();
+		   c.commit();
+		   c.close();
+	      } catch ( Exception e ) {
+	    	  System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    	  System.exit(0);
+	      }
+	   System.out.println("Records created successfully");
    }
 }

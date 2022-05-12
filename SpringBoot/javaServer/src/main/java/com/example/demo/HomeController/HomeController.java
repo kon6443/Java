@@ -6,9 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -40,7 +42,7 @@ public class HomeController {
     public List<String> keystrokeSend(Model model, HttpServletRequest req) throws IOException{
 		
 		// Fetching all data in a SQLite db.
-		List<String> countries = SQLiteJDBC.select();
+		List<String> countries = SQLiteJDBC.keystrokeShow();
 		
 		// country variable that is typed from front side.
 		String cursor = req.getParameter("country");
@@ -68,10 +70,11 @@ public class HomeController {
 		return "data";
 	}
 	
-	@ResponseBody
+//	@ResponseBody
 	@RequestMapping(value = "/data",method = RequestMethod.POST)
-	public String dataSend(Model model, HttpServletRequest req) {
-		String cursor = req.getParameter("country");
+//	public String dataSend(@RequestBody String body) {
+	public String dataSend(@RequestParam String name, @RequestParam String ssn, @RequestParam String state) {
+		SQLiteJDBC.dataShow();
 		return "data";
 	}
 
