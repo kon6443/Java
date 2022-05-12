@@ -29,34 +29,6 @@ public class SQLiteJDBC {
 //         System.exit(0);
 //      }
 //      System.out.println("Table created successfully");
-
-	   
-	   
-	   select();
-	   	
-//      Connection c = null;
-//      Statement stmt = null;
-//      try {
-//    	  Class.forName("org.sqlite.JDBC");
-//    	  c = DriverManager.getConnection("jdbc:sqlite:database.db");
-//    	  c.setAutoCommit(false);
-//    	  stmt = c.createStatement();
-//    	  ResultSet rs = stmt.executeQuery( "SELECT * FROM COUNTRY;" );
-//		      
-//    	  while ( rs.next() ) {
-//    		  int id = rs.getInt("id");
-//    		  String  name = rs.getString("name");
-//    		  System.out.println( "ID = " + id );
-//    		  System.out.println( "NAME = " + name );
-//    		  System.out.println();
-//    	  }
-//    	  rs.close();
-//    	  stmt.close();
-//    	  c.close();
-//      } catch ( Exception e ) {
-//    	  System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-//    	  System.exit(0);
-//      }
    }
    public static List<String> select() {
 	   Connection c = null;
@@ -64,7 +36,7 @@ public class SQLiteJDBC {
 	   List<String> returnVal = new ArrayList<String>();
 	   try {
 		   Class.forName("org.sqlite.JDBC");
-		   c = DriverManager.getConnection("jdbc:sqlite:database.db");
+		   c = DriverManager.getConnection("jdbc:sqlite:keystroke.db");
 		   c.setAutoCommit(false);
 		   stmt = c.createStatement();
 		   ResultSet rs = stmt.executeQuery( "SELECT * FROM COUNTRY;" );      
@@ -72,9 +44,6 @@ public class SQLiteJDBC {
 			   int id = rs.getInt("id");
 			   String  name = rs.getString("name");
 			   returnVal.add(name);
-//			   System.out.println(name + "added.");
-//			   System.out.println( "ID = " + id );
-//			   System.out.println( "NAME = " + name );
 		   }
 		   rs.close();
 		   stmt.close();

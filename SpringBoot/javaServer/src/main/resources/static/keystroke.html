@@ -99,14 +99,13 @@ By doing following steps, I was able to complete this project. <br><br>
 									answer.innerHTML = '';
 									return ;
 								}
-								console.log(country);
                                 $.ajax({
                                     type: "get",
                                     url: 'http://localhost:8080/keystroke/:country',
                                     data: {country:country},
                                     dataType:'json',
                                     success: function(res) {
-                                        answer.innerHTML = res.country;
+                                        answer.innerHTML = res;
                                     }
                                 });
                             }
