@@ -1,7 +1,5 @@
 package com.example.demo.HomeController;
 
-import java.util.*;
-
 class Person {
 	private int id;
 	private String name;
@@ -24,6 +22,9 @@ class Person {
 	}
 	public String state() {
 		return this.state;
+	}
+	public void introduce() {
+		System.out.println("id: "+this.id+", name: "+this.name+", ssn: "+this.SSN+", state: "+this.state);
 	}
 }
 

@@ -66,8 +66,15 @@ public class HomeController {
 		return "chat";
 	}
 	@RequestMapping(value = {"/data", "/data.html"})
-	public String data(Model model) {
-		return "data";
+	public List<Person> data(Model model) {
+//	public String data(Model model) {
+		System.out.println("I am called.");
+		List<Person> people = SQLiteJDBC.dataShow();
+		for(int i=0;i<people.size();i++) {
+			people.get(i).introduce();
+		}
+		return people;
+//		return "data";
 	}
 	
 //	@ResponseBody

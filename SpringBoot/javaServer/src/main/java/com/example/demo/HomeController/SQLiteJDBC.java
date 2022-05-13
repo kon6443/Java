@@ -54,10 +54,10 @@ public class SQLiteJDBC {
 	   }
 	   return returnVal;
    }
-   public static void dataShow() {
+   public static List<Person> dataShow() {
 	   Connection c = null;
 	   Statement stmt = null;
-//	   List<Person> returnVal = new ArrayList<Person>();
+	   List<Person> returnVal = new ArrayList<Person>();
 	   try {
 		   Class.forName("org.sqlite.JDBC");
 		   c = DriverManager.getConnection("jdbc:sqlite:data.db");
@@ -70,8 +70,8 @@ public class SQLiteJDBC {
 			   int ssn = rs.getInt("ssn");
 			   String state = rs.getString("state");
 			   Person person = new Person(id, name, ssn, state);
-			   System.out.println("p: " + person);
-//			   returnVal.add(person);
+//			   person.introduce();
+			   returnVal.add(person);
 		   }
 		   rs.close();
 		   stmt.close();
@@ -80,7 +80,9 @@ public class SQLiteJDBC {
 		   System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		   System.exit(0);
 	   }
-//	   return returnVal;
+//	   System.out.println(returnVal.getClass());
+//	   returnVal.get(0).introduce();
+	   return returnVal;
    }
    public static void dataPost(String name, int SSN, String state) {
 	   Connection c = null;

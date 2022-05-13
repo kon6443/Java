@@ -62,7 +62,7 @@
                                     dataType:'json',
                                     success: function(res) {
                                         location.reload()
-                                        showAjax()
+//                                         showAjax()
                                     }
                                 });
                             }
@@ -80,17 +80,21 @@
                                     dataType:'json',
                                     success: function(res) {
                                         location.reload()
-                                        showAjax()
+//                                         showAjax()
                                     }
                                 });
                             }
                             function showAjax() {
+                            	console.log("showAjax() has been called.");
                                 $.ajax({
                                     type: "get",
-                                    url: 'http://localhost:8080/data/:name/:ssn/:state',
+                                    url: 'http://localhost:8080/data',
+// 									url: 'http://localhost:8080/data/:name/:ssn/:state',
                                     data: {},
                                     dataType:'json',
                                     success: function(res) {
+                                    	console.log("success function has been called.");
+                                    	console.log(res);
                                         var return_value = "";
                                         return_value += "<table>\n"
                                         return_value += "<tr>\n"
