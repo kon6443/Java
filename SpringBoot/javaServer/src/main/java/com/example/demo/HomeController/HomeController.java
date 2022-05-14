@@ -1,5 +1,7 @@
 package com.example.demo.HomeController;
 
+//import java.awt.PageAttributes.MediaType;
+import org.springframework.http.MediaType;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,13 +67,15 @@ public class HomeController {
 	public String chat(Model model) {
 		return "chat";
 	}
-	@RequestMapping(value = {"/data", "/data.html"})
+//	@ResponseBody
+	@RequestMapping(value = {"/data", "/data.html"},method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Person> data(Model model) {
 //	public String data(Model model) {
 		System.out.println("I am called.");
 		List<Person> people = SQLiteJDBC.dataShow();
 		for(int i=0;i<people.size();i++) {
 			people.get(i).introduce();
+			System.out.println(people.get(i).name);
 		}
 		return people;
 //		return "data";

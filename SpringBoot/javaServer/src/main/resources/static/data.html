@@ -95,22 +95,22 @@
                                     success: function(res) {
                                     	console.log("success function has been called.");
                                     	console.log(res);
-                                        var return_value = "";
-                                        return_value += "<table>\n"
-                                        return_value += "<tr>\n"
-                                        for(let k=0;k<res.headings.length;k++) {
-                                            return_value += "<th>"+res.headings[k]+"</th>\n"
-                                        }
-                                        return_value += "</tr>\n"
-                                        for(let i=0;i<res.data.length;i++) {
-                                            return_value += "<tr>\n"
-                                            for(let j=0;j<res.headings.length;j++) {
-                                                return_value += "<td>"+res.data[i][j]+"</td>\n"
-                                            }
-                                            return_value += "</tr>\n"
-                                        }
-                                        return_value += "</table>\n"
-                                        $('article').append(return_value);
+                                        // var return_value = "";
+//                                         return_value += "<table>\n"
+//                                         return_value += "<tr>\n"
+//                                         for(let k=0;k<res.headings.length;k++) {
+//                                             return_value += "<th>"+res.headings[k]+"</th>\n"
+//                                         }
+//                                         return_value += "</tr>\n"
+//                                         for(let i=0;i<res.data.length;i++) {
+//                                             return_value += "<tr>\n"
+//                                             for(let j=0;j<res.headings.length;j++) {
+//                                                 return_value += "<td>"+res.data[i][j]+"</td>\n"
+//                                             }
+//                                             return_value += "</tr>\n"
+//                                         }
+//                                         return_value += "</table>\n"
+//                                         $('article').append(return_value);
                                     }
                                 });
                             }

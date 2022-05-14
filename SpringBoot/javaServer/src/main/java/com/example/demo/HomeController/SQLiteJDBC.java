@@ -57,21 +57,20 @@ public class SQLiteJDBC {
    public static List<Person> dataShow() {
 	   Connection c = null;
 	   Statement stmt = null;
-	   List<Person> returnVal = new ArrayList<Person>();
+	   List<Person> people = new ArrayList<Person>();
 	   try {
 		   Class.forName("org.sqlite.JDBC");
 		   c = DriverManager.getConnection("jdbc:sqlite:data.db");
 		   c.setAutoCommit(false);
 		   stmt = c.createStatement();
 		   ResultSet rs = stmt.executeQuery( "SELECT * FROM PEOPLE;" );      
-		   while ( rs.next() ) {
+		   while(rs.next()) {
 			   int id = rs.getInt("id");
 			   String name = rs.getString("name");
 			   int ssn = rs.getInt("ssn");
 			   String state = rs.getString("state");
 			   Person person = new Person(id, name, ssn, state);
-//			   person.introduce();
-			   returnVal.add(person);
+			   people.add(person);
 		   }
 		   rs.close();
 		   stmt.close();
@@ -80,9 +79,7 @@ public class SQLiteJDBC {
 		   System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		   System.exit(0);
 	   }
-//	   System.out.println(returnVal.getClass());
-//	   returnVal.get(0).introduce();
-	   return returnVal;
+	   return people;
    }
    public static void dataPost(String name, int SSN, String state) {
 	   Connection c = null;

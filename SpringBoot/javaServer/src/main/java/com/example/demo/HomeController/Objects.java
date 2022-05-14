@@ -1,26 +1,26 @@
 package com.example.demo.HomeController;
 
 class Person {
-	private int id;
-	private String name;
-	private int SSN;
-	private String state;
+	public int id;
+	public String name;
+	public int SSN;
+	public String state;
 	Person(int id, String name, int SSN, String state) {
 		this.id = id;
 		this.name = name;
 		this.SSN = SSN;
 		this.state= state;
 	}
-	public int id() {
+	public int getId() {
 		return this.id;
 	}
-	public String name() {
+	public String getName() {
 		return this.name;
 	}
-	public int ssn() {
+	public int getSsn() {
 		return this.SSN;
 	}
-	public String state() {
+	public String getState() {
 		return this.state;
 	}
 	public void introduce() {
