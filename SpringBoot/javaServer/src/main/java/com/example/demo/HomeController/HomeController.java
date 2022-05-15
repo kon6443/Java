@@ -20,6 +20,7 @@ import java.util.List;
 import java.sql.*;
 
 
+
 // controller annotation
 @Controller
 public class HomeController {
@@ -67,7 +68,7 @@ public class HomeController {
 	public String chat(Model model) {
 		return "chat";
 	}
-//	@ResponseBody
+	@ResponseBody
 	@RequestMapping(value = {"/data", "/data.html"},method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Person> data(Model model) {
 //	public String data(Model model) {
@@ -75,7 +76,6 @@ public class HomeController {
 		List<Person> people = SQLiteJDBC.dataShow();
 		for(int i=0;i<people.size();i++) {
 			people.get(i).introduce();
-			System.out.println(people.get(i).name);
 		}
 		return people;
 //		return "data";
