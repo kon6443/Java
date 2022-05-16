@@ -73,24 +73,23 @@ public class HomeController {
 		return "data";
 	}
 	@ResponseBody
-	@RequestMapping(value = {"/data", "/data.html"},method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Person> dataShow(Model model) {
+	@RequestMapping(value = {"/data", "/data.html"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Person> dataShow() {
+		// calling a method that returning a db field.
 		List<Person> people = SQLiteJDBC.dataShow();
-		for(int i=0;i<people.size();i++) {
-			people.get(i).introduce();
-		}
 		return people;
 	}
 	
 //	@ResponseBody
-	@RequestMapping(value = "/data",method = RequestMethod.POST)
+	@RequestMapping(value = "/data", method = RequestMethod.POST)
 	public String dataPost(@RequestParam String name, @RequestParam int ssn, @RequestParam String state) {
+		// calling a method that inserting an user info into a db field.
 		SQLiteJDBC.dataPost(name, ssn, state);
 		return "data";
 	}
-	@RequestMapping(value = "/data",method = RequestMethod.DELETE)
+	@RequestMapping(value = "/data", method = RequestMethod.DELETE)
 	public String dataDelete(@RequestParam int id) {
-		System.out.println("data delete middleware has been called.");
+		// calling a method that deleting 
 		SQLiteJDBC.dataDelete(id);
 		return "data";
 	}
