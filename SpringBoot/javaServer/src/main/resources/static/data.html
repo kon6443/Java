@@ -57,12 +57,12 @@
                                 document.getElementById("id").value = "";
                                 $.ajax({
                                     type: "delete",
-                                    url: 'http://localhost:8080/data/:id',
+                                    url: 'http://localhost:8080/data',
                                     data: {id:id},
                                     dataType:'json',
                                     success: function(res) {
                                         location.reload()
-//                                         showAjax()
+                                        showAjax()
                                     }
                                 });
                             }
@@ -79,38 +79,36 @@
                                     data: {name:name,ssn:ssn,state:state},
                                     dataType:'json',
                                     success: function(res) {
+                                        showAjax()
                                         location.reload()
-//                                         showAjax()
                                     }
                                 });
                             }
                             function showAjax() {
-                            	console.log("showAjax() has been called.");
+                            	console.log("showAjax function has been called.");
                                 $.ajax({
                                     type: "get",
                                     url: 'http://localhost:8080/data',
-// 									url: 'http://localhost:8080/data/:name/:ssn/:state',
-                                    data: {},
                                     dataType:'json',
                                     success: function(res) {
-                                    	console.log("success function has been called.");
-                                    	console.log(res);
-                                        // var return_value = "";
-//                                         return_value += "<table>\n"
-//                                         return_value += "<tr>\n"
-//                                         for(let k=0;k<res.headings.length;k++) {
-//                                             return_value += "<th>"+res.headings[k]+"</th>\n"
-//                                         }
-//                                         return_value += "</tr>\n"
-//                                         for(let i=0;i<res.data.length;i++) {
-//                                             return_value += "<tr>\n"
-//                                             for(let j=0;j<res.headings.length;j++) {
-//                                                 return_value += "<td>"+res.data[i][j]+"</td>\n"
-//                                             }
-//                                             return_value += "</tr>\n"
-//                                         }
-//                                         return_value += "</table>\n"
-//                                         $('article').append(return_value);
+                                        var return_value = "";
+                                        return_value += "<table>\n";
+                                        return_value += "<tr>\n";
+                                        const heading = ['ID', 'Name', 'SSN', 'State'];
+                                        for(let k=0;k<heading.length;k++) {
+                                            return_value += "<th>"+heading[k]+"</th>\n"
+                                        }
+                                        return_value += "</tr>\n"
+                                        for(let i=0;i<res.length;i++) {
+                                            return_value += "<tr>\n"
+                                            return_value += "<td>"+res[i].id+"</td>\n"
+                                            return_value += "<td>"+res[i].name+"</td>\n"
+                                            return_value += "<td>"+res[i].SSN+"</td>\n"
+                                            return_value += "<td>"+res[i].state+"</td>\n"
+                                            return_value += "</tr>\n"
+                                        }
+                                        return_value += "</table>\n"
+                                        $('article').append(return_value);
                                     }
                                 });
                             }

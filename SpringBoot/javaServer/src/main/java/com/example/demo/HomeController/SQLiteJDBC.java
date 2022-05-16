@@ -81,17 +81,16 @@ public class SQLiteJDBC {
 	   }
 	   return people;
    }
-   public static void dataPost(String name, int SSN, String state) {
+   public static void dataPost(String name, int ssn, String state) {
 	   Connection c = null;
 	   Statement stmt = null;
 	   try {
 		   Class.forName("org.sqlite.JDBC");
 		   c = DriverManager.getConnection("jdbc:sqlite:data.db");
 		   c.setAutoCommit(false);
-		   System.out.println("Opened database successfully");
 		   stmt = c.createStatement();
 		   String sql = "INSERT INTO PEOPLE (NAME,SSN,STATE) "+
-	                        "VALUES ("+name+","+SSN+","+state+");"; 
+	                        "VALUES ('"+name+"','"+ssn+"','"+state+"');";
 		   stmt.executeUpdate(sql);
 		   stmt.close();
 		   c.commit();
@@ -100,6 +99,23 @@ public class SQLiteJDBC {
 	    	  System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	    	  System.exit(0);
 	      }
-	   System.out.println("Records created successfully");
+   }
+   public static void dataDelete(int id) {
+	   Connection c = null;
+	   Statement stmt = null;
+	   try {
+		   Class.forName("org.sqlite.JDBC");
+		   c = DriverManager.getConnection("jdbc:sqlite:data.db");
+		   c.setAutoCommit(false);
+		   stmt = c.createStatement();
+		   String sql = "DELETE FROM PEOPLE WHERE id="+id+";";
+		   stmt.executeUpdate(sql);
+		   stmt.close();
+		   c.commit();
+		   c.close();
+	      } catch ( Exception e ) {
+	    	  System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	    	  System.exit(0);
+	      }
    }
 }
