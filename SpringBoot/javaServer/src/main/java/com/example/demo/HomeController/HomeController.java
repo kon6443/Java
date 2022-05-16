@@ -35,6 +35,16 @@ public class HomeController {
 	public String login(Model model) {
 		return "login";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String signUp(@RequestParam String id, @RequestParam String address, @RequestParam String pw, @RequestParam String pwc) {
+		System.out.println("id: "+id);
+		System.out.println("address: "+address);
+		System.out.println("pw: "+pw);
+		System.out.println("pwc: "+pwc);
+		return "data";
+	}
 	@RequestMapping(value = {"/keystroke", "/keystroke.html"})
 	public String keystroke(Model model) {
 		return "keystroke";
@@ -72,6 +82,7 @@ public class HomeController {
 	public String data(Model model) {
 		return "data";
 	}
+	
 	@ResponseBody
 	@RequestMapping(value = {"/data", "/data.html"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Person> dataShow() {
@@ -80,13 +91,15 @@ public class HomeController {
 		return people;
 	}
 	
-//	@ResponseBody
+	@ResponseBody
 	@RequestMapping(value = "/data", method = RequestMethod.POST)
 	public String dataPost(@RequestParam String name, @RequestParam int ssn, @RequestParam String state) {
 		// calling a method that inserting an user info into a db field.
 		SQLiteJDBC.dataPost(name, ssn, state);
 		return "data";
 	}
+	
+	@ResponseBody
 	@RequestMapping(value = "/data", method = RequestMethod.DELETE)
 	public String dataDelete(@RequestParam int id) {
 		// calling a method that deleting 

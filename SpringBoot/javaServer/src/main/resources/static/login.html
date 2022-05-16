@@ -68,8 +68,8 @@
                                 document.getElementById("pw").value = "";
                                 document.getElementById("pwc").value = "";
                                 $.ajax({
-                                    type: "post",
-                                    url: 'http://localhost:8080/login/:signUpid/:signUpaddress/:signUppw/:signUppwc',
+                                    type: "POST",
+                                    url: 'http://localhost:8080/login',
                                     data: {id:id,address:address,pw:pw,pwc:pwc},
                                     dataType:'text',
                                     success: function(res) {
@@ -83,7 +83,7 @@
                                 document.getElementById("signinID").value = "";
                                 document.getElementById("signinPW").value = "";
                                 $.ajax({
-                                    type: "post",
+                                    type: "POST",
                                     url: 'http://localhost:8080/login/:signInid/:signInpw',
                                     data: {id:signinID,pw:signinPW},
                                     dataType:'text',

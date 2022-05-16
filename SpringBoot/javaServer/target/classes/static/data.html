@@ -56,13 +56,16 @@
                                 const id = document.getElementById("id").value;
                                 document.getElementById("id").value = "";
                                 $.ajax({
-                                    type: "delete",
+                                    type: "DELETE",
                                     url: 'http://localhost:8080/data',
                                     data: {id:id},
-                                    dataType:'json',
-                                    success: function(res) {
-                                        location.reload()
-                                        showAjax()
+                                    dataType:'text',
+                                    async:false,
+                                    success: function() {
+                                        location.reload();
+                                    },
+                                    error: function() {
+                                    	console.log("failed.");
                                     }
                                 });
                             }
@@ -74,18 +77,20 @@
                                 document.getElementById("ssn").value = "";
                                 document.getElementById("state").value = "";
                                 $.ajax({
-                                    type: "post",
+                                    type: "POST",
                                     url: 'http://localhost:8080/data',
                                     data: {name:name,ssn:ssn,state:state},
-                                    dataType:'json',
-                                    success: function(res) {
-                                        location.reload()
-                                        showAjax()
+                                    dataType:'text',
+									async:false,
+                                    success: function() {
+                                    	location.reload();
+                                    },
+                                    error: function() {
+                                    	console.log("failed.");
                                     }
                                 });
                             }
                             function showAjax() {
-                            	console.log("showAjax function has been called.");
                                 $.ajax({
                                     type: "get",
                                     url: 'http://localhost:8080/data',
