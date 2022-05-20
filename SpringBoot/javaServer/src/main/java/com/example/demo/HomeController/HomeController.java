@@ -1,5 +1,6 @@
 package com.example.demo.HomeController;
 
+import org.springframework.beans.factory.annotation.Value;
 //import java.awt.PageAttributes.MediaType;
 import org.springframework.http.MediaType;
 import java.io.IOException;
@@ -31,18 +32,21 @@ public class HomeController {
 		// template file name.
 		return "home";
 	}
+	@Value("${mongoDB.uri}")
+	private String mongoDBURI;
 	@RequestMapping(value = {"/login", "/login.html"})
 	public String login(Model model) {
+		System.out.println("mongoDBURI: "+mongoDBURI);
+		MongoDB.connectDB(mongoDBURI);
 		return "login";
 	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String signUp(@RequestParam String id, @RequestParam String address, @RequestParam String pw, @RequestParam String pwc) {
-		System.out.println("id: "+id);
-		System.out.println("address: "+address);
-		System.out.println("pw: "+pw);
-		System.out.println("pwc: "+pwc);
+		if(id==null || address==null || pw==null ||pwc==null) return "data";
+		if(pw!=pwc) return "data";
+		MongoDB.signUp(id, address, pw);
 		return "data";
 	}
 	@RequestMapping(value = {"/keystroke", "/keystroke.html"})

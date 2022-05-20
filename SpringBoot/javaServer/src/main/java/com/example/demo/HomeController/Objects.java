@@ -1,11 +1,11 @@
 package com.example.demo.HomeController;
 
 class Person {
-	public int id;
-	public String name;
-	public int SSN;
-	public String state;
-	public Person(int id, String name, int SSN, String state) {
+	private int id;
+	private String name;
+	private int SSN;
+	private String state;
+	Person(int id, String name, int SSN, String state) {
 		this.id = id;
 		this.name = name;
 		this.SSN = SSN;

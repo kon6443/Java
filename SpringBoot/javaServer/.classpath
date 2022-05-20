@@ -30,5 +30,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="/Users/scott/Downloads/sqlite-jdbc-3.36.0.3.jar"/>
+	<classpathentry kind="lib" path="/Users/scott/Downloads/spring-dotenv-2.5.3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
