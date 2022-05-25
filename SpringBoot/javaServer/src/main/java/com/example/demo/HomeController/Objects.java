@@ -5,6 +5,7 @@ class Person {
 	private String name;
 	private int SSN;
 	private String state;
+	
 	Person(int id, String name, int SSN, String state) {
 		this.id = id;
 		this.name = name;

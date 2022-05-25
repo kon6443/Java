@@ -34,10 +34,11 @@ public class HomeController {
 	}
 	@Value("${mongoDB.uri}")
 	private String mongoDBURI;
+//	@Value("${test.mongodb.database}")
+//	private String dbName;
 	@RequestMapping(value = {"/login", "/login.html"})
 	public String login(Model model) {
-		System.out.println("mongoDBURI: "+mongoDBURI);
-		MongoDB.connectDB(mongoDBURI);
+//		MongoDB.connectDB(mongoDBURI);
 		return "login";
 	}
 	
