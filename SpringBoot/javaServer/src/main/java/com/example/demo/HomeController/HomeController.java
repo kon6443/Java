@@ -47,7 +47,8 @@ public class HomeController {
 	public String signUp(@RequestParam String id, @RequestParam String address, @RequestParam String pw, @RequestParam String pwc) {
 		if(id==null || address==null || pw==null ||pwc==null) return "data";
 		if(pw!=pwc) return "data";
-		MongoDB.signUp(id, address, pw);
+		User user = new User(id, address, pw);
+		userService.mongoInsert(user);
 		return "data";
 	}
 	@RequestMapping(value = {"/keystroke", "/keystroke.html"})

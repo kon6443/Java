@@ -16,18 +16,19 @@ import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 
-//@Configuration
-@Component
+@Configuration
+//@Component
 public class MongoDBConfig {
 
 	@Value("${mongodb.test.connectionString}")
 	private String connectionString;
-	
-//	@Bean
+	@Value("${test.key}")
+	private String connectionStr;
+	@Bean
 	public MongoDatabaseFactory mongoDatabaseFactory() {
 		System.out.println("MongoDBConfig bean has been called.");
-		System.out.println(connectionString);
-		return new SimpleMongoClientDatabaseFactory(connectionString);
+		System.out.println(connectionStr);
+		return new SimpleMongoClientDatabaseFactory(connectionStr);
 	}
 
 	@Bean
@@ -35,18 +36,7 @@ public class MongoDBConfig {
 		return new MongoTemplate(mongoDatabaseFactory());
 	}
 	
-	@Value("${mongodb.test.connectionString}")
-	private String connectionStr;
-	@Bean
 	public static void main( String args[] ) {
-		ConnectionString connectionString = new ConnectionString(connectionStr);
-		MongoClientSettings settings = MongoClientSettings.builder()
-		        .applyConnectionString(connectionString)
-		        .serverApi(ServerApi.builder()
-		            .version(ServerApiVersion.V1)
-		            .build())
-		        .build();
-		MongoClient mongoClient = MongoClients.create(settings);
-		MongoDatabase database = mongoClient.getDatabase("test");
+		
 	}
 }

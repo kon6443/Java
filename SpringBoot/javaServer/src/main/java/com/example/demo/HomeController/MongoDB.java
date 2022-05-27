@@ -9,14 +9,14 @@ import com.mongodb.*;
 import com.mongodb.client.*;
 
 //@Configuration
-@Component
+//@Component
 public class MongoDB {
 //	public static void findUser() {
 //		mongoTemplate.findOne();
 //	}
-//	@Value("${test.key}")
-//	private String mongoDBURI;
-//	@Bean
+	@Value("${test.key}")
+	private String mongoDBURI;
+	@Bean
 	public static void connectDB(String mongoDBURI) {
 		System.out.println("mongoDBURI: "+mongoDBURI);
 		try {
