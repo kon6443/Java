@@ -1,6 +1,8 @@
 package com.example.demo.HomeController;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.mongodb.core.MongoTemplate;
 //import java.awt.PageAttributes.MediaType;
 import org.springframework.http.MediaType;
 import java.io.IOException;
@@ -32,6 +34,16 @@ public class HomeController {
 		// template file name.
 		return "home";
 	}
+	
+//	@Autowired
+//    private UserRepository userRepo;
+
+//	private final userService userRepo = new userService();
+	
+	
+	@Autowired
+	private MongoTemplate mt;
+	
 	@Value("${mongoDB.uri}")
 	private String mongoDBURI;
 //	@Value("${test.mongodb.database}")
@@ -39,16 +51,26 @@ public class HomeController {
 	@RequestMapping(value = {"/login", "/login.html"})
 	public String login(Model model) {
 //		MongoDB.connectDB(mongoDBURI);
+//		User user = new User("first", "first address", "firstpw");
+		List<User> users = mt.findAll(User.class, "User");
+		System.out.println(users);
+		System.out.println("1: "+mt.findById("seven", User.class));
+		System.out.println("2: "+mt.findById("62465e55af3766c38615be16", User.class));
+		User user1 = mt.findById("62465e55af3766c38615be16", User.class);
+		User user2 = mt.findById("seven", User.class);
+		System.out.println(user1);
+		System.out.println(user2);
 		return "login";
 	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String signUp(@RequestParam String id, @RequestParam String address, @RequestParam String pw, @RequestParam String pwc) {
 		if(id==null || address==null || pw==null ||pwc==null) return "data";
 		if(pw!=pwc) return "data";
-		User user = new User(id, address, pw);
-		userService.mongoInsert(user);
+//		User user = new User(id, address, pw);
+		
 		return "data";
 	}
 	@RequestMapping(value = {"/keystroke", "/keystroke.html"})
