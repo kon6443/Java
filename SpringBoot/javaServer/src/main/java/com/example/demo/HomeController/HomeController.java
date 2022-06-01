@@ -51,7 +51,7 @@ public class HomeController {
 	@RequestMapping(value = {"/login", "/login.html"})
 	public String login(Model model) {
 //		MongoDB.connectDB(mongoDBURI);
-//		User user = new User("first", "first address", "firstpw");
+		User user = new User("first", "first address", "firstpw");
 		List<User> users = mt.findAll(User.class, "User");
 		System.out.println(users);
 		System.out.println("1: "+mt.findById("seven", User.class));
